@@ -15,7 +15,7 @@ public class Logger {
 			return level;
 		}
 	}
-	private LogLevel logLevel = LogLevel.NONE;
+	private LogLevel logLevel = LogLevel.FATAL;
 
 	public void setLogLevel(LogLevel logLevel) {
 		this.logLevel = logLevel;
@@ -23,9 +23,46 @@ public class Logger {
 
 	private void log(LogLevel l, String s) {
 		if (l.level >= logLevel.level)
+			System.out.print("[" + l.name() + "]" + s);
+	}
+	
+	private void logLn(LogLevel l, String s) {
+		if (l.level >= logLevel.level)
 			System.out.println("[" + l.name() + "]" + s);
 	}
 
+	public void infoLn(String s) {
+		logLn(LogLevel.INFO, s);
+	}
+
+	public void debugLn(String s) {
+		logLn(LogLevel.DEBUG, s);
+	}
+
+	public void errorLn(String s) {
+		logLn(LogLevel.ERROR, s);
+	}
+
+	public void fatalLn(String s) {
+		logLn(LogLevel.FATAL, s);
+	}
+	
+	public void infoLn() {
+		logLn(LogLevel.INFO, "");
+	}
+
+	public void debugLn() {
+		logLn(LogLevel.DEBUG, "");
+	}
+
+	public void errorLn() {
+		logLn(LogLevel.ERROR, "");
+	}
+
+	public void fatalLn() {
+		logLn(LogLevel.FATAL, "");
+	}
+	
 	public void info(String s) {
 		log(LogLevel.INFO, s);
 	}
